@@ -1,0 +1,502 @@
+[
+  {
+    "id": "q1",
+    "text": "每一个清晨都是新的开始，愿你今天比昨天更好。",
+    "category": "motivational"
+  },
+  {
+    "id": "q2",
+    "text": "生活不会亏待每一份努力，星光不问赶路人。",
+    "category": "motivational"
+  },
+  {
+    "id": "q3",
+    "text": "你只管努力，剩下的交给时间。",
+    "category": "motivational"
+  },
+  {
+    "id": "q4",
+    "text": "人生没有白走的路，每一步都算数。",
+    "category": "motivational"
+  },
+  {
+    "id": "q5",
+    "text": "愿你成为自己的太阳，无需凭借谁的光。",
+    "category": "motivational"
+  },
+  {
+    "id": "q6",
+    "text": "坚持是一件很酷的事。",
+    "category": "motivational"
+  },
+  {
+    "id": "q7",
+    "text": "今天也要元气满满呀。",
+    "category": "motivational"
+  },
+  {
+    "id": "q8",
+    "text": "所有的坚持，终将美好。",
+    "category": "motivational"
+  },
+  {
+    "id": "q9",
+    "text": "做自己的英雄，不需要披风。",
+    "category": "motivational"
+  },
+  {
+    "id": "q10",
+    "text": "向阳而生，逆风成长。",
+    "category": "motivational"
+  },
+  {
+    "id": "q11",
+    "text": "每天进步一点点，就是最好的自己。",
+    "category": "motivational"
+  },
+  {
+    "id": "q12",
+    "text": "你未来的样子，藏在现在的努力里。",
+    "category": "motivational"
+  },
+  {
+    "id": "q13",
+    "text": "星光不问赶路人，时光不负有心人。",
+    "category": "motivational"
+  },
+  {
+    "id": "q14",
+    "text": "你只管善良，福报已在路上。",
+    "category": "motivational"
+  },
+  {
+    "id": "q15",
+    "text": "不负韶华，不负自己。",
+    "category": "motivational"
+  },
+  {
+    "id": "q16",
+    "text": "越努力，越幸运。",
+    "category": "motivational"
+  },
+  {
+    "id": "q17",
+    "text": "生活不仅有眼前的苟且，还有诗和远方。",
+    "category": "motivational"
+  },
+  {
+    "id": "q18",
+    "text": "今天的你，是昨天的你所期待的明天。",
+    "category": "motivational"
+  },
+  {
+    "id": "q19",
+    "text": "做难事必有所得。",
+    "category": "motivational"
+  },
+  {
+    "id": "q20",
+    "text": "种一棵树最好的时间是十年前，其次是现在。",
+    "category": "motivational"
+  },
+  {
+    "id": "q21",
+    "text": "千里之行，始于足下。",
+    "category": "motivational"
+  },
+  {
+    "id": "q22",
+    "text": "不经一番寒彻骨，怎得梅花扑鼻香。",
+    "category": "motivational"
+  },
+  {
+    "id": "q23",
+    "text": "宝剑锋从磨砺出，梅花香自苦寒来。",
+    "category": "motivational"
+  },
+  {
+    "id": "q24",
+    "text": "天道酬勤。",
+    "category": "motivational"
+  },
+  {
+    "id": "q25",
+    "text": "业精于勤，荒于嬉。",
+    "category": "motivational"
+  },
+  {
+    "id": "q26",
+    "text": "慢慢来，比较快。",
+    "category": "healing"
+  },
+  {
+    "id": "q27",
+    "text": "今天也要做一个温柔且清醒的人。",
+    "category": "healing"
+  },
+  {
+    "id": "q28",
+    "text": "允许自己偶尔脆弱，但不要忘记重新出发。",
+    "category": "healing"
+  },
+  {
+    "id": "q29",
+    "text": "别急，美好的事物都需要时间。",
+    "category": "healing"
+  },
+  {
+    "id": "q30",
+    "text": "你现在的气质里，藏着你走过的路和读过的书。",
+    "category": "healing"
+  },
+  {
+    "id": "q31",
+    "text": "生活明朗，万物可爱。",
+    "category": "healing"
+  },
+  {
+    "id": "q32",
+    "text": "愿你眼里有光，心里有爱。",
+    "category": "healing"
+  },
+  {
+    "id": "q33",
+    "text": "温柔要有锋芒，善良要有底线。",
+    "category": "healing"
+  },
+  {
+    "id": "q34",
+    "text": "愿所有的遗憾都是成全。",
+    "category": "healing"
+  },
+  {
+    "id": "q35",
+    "text": "心若向阳，无谓悲伤。",
+    "category": "healing"
+  },
+  {
+    "id": "q36",
+    "text": "愿你被世界温柔以待，也能温柔待人。",
+    "category": "healing"
+  },
+  {
+    "id": "q37",
+    "text": "愿你的眼里有星辰大海。",
+    "category": "healing"
+  },
+  {
+    "id": "q38",
+    "text": "愿岁月可回首，且以深情共白头。",
+    "category": "healing"
+  },
+  {
+    "id": "q39",
+    "text": "慢慢变好，才是给自己最好的礼物。",
+    "category": "healing"
+  },
+  {
+    "id": "q40",
+    "text": "愿你心中有梦，眼里有光。",
+    "category": "healing"
+  },
+  {
+    "id": "q41",
+    "text": "生活就像海洋，只有意志坚强的人才能到达彼岸。",
+    "category": "healing"
+  },
+  {
+    "id": "q42",
+    "text": "愿你成为自己想成为的人。",
+    "category": "healing"
+  },
+  {
+    "id": "q43",
+    "text": "心若没有栖息的地方，到哪里都是流浪。",
+    "category": "healing"
+  },
+  {
+    "id": "q44",
+    "text": "愿你眼里有星辰，心中有山海。",
+    "category": "healing"
+  },
+  {
+    "id": "q45",
+    "text": "生活总是让我们遍体鳞伤，但到后来，那些受伤的地方一定会变成我们最强壮的地方。",
+    "category": "healing"
+  },
+  {
+    "id": "q46",
+    "text": "愿你被这世界温柔以待。",
+    "category": "healing"
+  },
+  {
+    "id": "q47",
+    "text": "愿你所有的努力都不被辜负。",
+    "category": "healing"
+  },
+  {
+    "id": "q48",
+    "text": "愿你眼里有光，活成自己想要的模样。",
+    "category": "healing"
+  },
+  {
+    "id": "q49",
+    "text": "愿你成为自己的光。",
+    "category": "healing"
+  },
+  {
+    "id": "q50",
+    "text": "愿你的温柔，有人懂得。",
+    "category": "healing"
+  },
+  {
+    "id": "q51",
+    "text": "爱是细水长流，不是惊天动地。",
+    "category": "love"
+  },
+  {
+    "id": "q52",
+    "text": "最好的爱情，是两个人一起变得更好。",
+    "category": "love"
+  },
+  {
+    "id": "q53",
+    "text": "愿你被这世界温柔以待。",
+    "category": "love"
+  },
+  {
+    "id": "q54",
+    "text": "喜欢你，是我做过最勇敢的事。",
+    "category": "love"
+  },
+  {
+    "id": "q55",
+    "text": "陪伴是最长情的告白。",
+    "category": "love"
+  },
+  {
+    "id": "q56",
+    "text": "喜欢你这件事，我从未后悔。",
+    "category": "love"
+  },
+  {
+    "id": "q57",
+    "text": "愿得一人心，白首不相离。",
+    "category": "love"
+  },
+  {
+    "id": "q58",
+    "text": "岁月静好，因为有你在。",
+    "category": "love"
+  },
+  {
+    "id": "q59",
+    "text": "爱自己，是终身浪漫的开始。",
+    "category": "love"
+  },
+  {
+    "id": "q60",
+    "text": "愿你的温柔，有人懂得。",
+    "category": "love"
+  },
+  {
+    "id": "q61",
+    "text": "爱是恒久忍耐，又有恩慈。",
+    "category": "love"
+  },
+  {
+    "id": "q62",
+    "text": "执子之手，与子偕老。",
+    "category": "love"
+  },
+  {
+    "id": "q63",
+    "text": "你笑起来真好看，像春天的花一样。",
+    "category": "love"
+  },
+  {
+    "id": "q64",
+    "text": "愿与你共度余生，看尽人间烟火。",
+    "category": "love"
+  },
+  {
+    "id": "q65",
+    "text": "两情若是久长时，又岂在朝朝暮暮。",
+    "category": "love"
+  },
+  {
+    "id": "q66",
+    "text": "愿得一人心。",
+    "category": "love"
+  },
+  {
+    "id": "q67",
+    "text": "爱是想触碰又收回手。",
+    "category": "love"
+  },
+  {
+    "id": "q68",
+    "text": "愿你的爱情如初见。",
+    "category": "love"
+  },
+  {
+    "id": "q69",
+    "text": "愿你的爱情，始于心动，终于白首。",
+    "category": "love"
+  },
+  {
+    "id": "q70",
+    "text": "执念太深，便是魔障；放下执念，便是自在。",
+    "category": "love"
+  },
+  {
+    "id": "q71",
+    "text": "愿有岁月可回首。",
+    "category": "love"
+  },
+  {
+    "id": "q72",
+    "text": "愿与你共度余生。",
+    "category": "love"
+  },
+  {
+    "id": "q73",
+    "text": "爱是陪伴，是理解，是包容。",
+    "category": "love"
+  },
+  {
+    "id": "q74",
+    "text": "愿你的爱情甜如蜜。",
+    "category": "love"
+  },
+  {
+    "id": "q75",
+    "text": "愿得一人心，白首不分离。",
+    "category": "love"
+  },
+  {
+    "id": "q76",
+    "text": "真正的朋友，是见过你所有样子依然陪伴的人。",
+    "category": "friendship"
+  },
+  {
+    "id": "q77",
+    "text": "愿你有人陪你颠沛流离。",
+    "category": "friendship"
+  },
+  {
+    "id": "q78",
+    "text": "朋友就是那个在你低谷时依然在的人。",
+    "category": "friendship"
+  },
+  {
+    "id": "q79",
+    "text": "有你在，就是最好的时光。",
+    "category": "friendship"
+  },
+  {
+    "id": "q80",
+    "text": "真正的友情，是即使不联系也心心相印。",
+    "category": "friendship"
+  },
+  {
+    "id": "q81",
+    "text": "最好的友情，是各自忙碌又互相牵挂。",
+    "category": "friendship"
+  },
+  {
+    "id": "q82",
+    "text": "有你相伴，岁月不寒。",
+    "category": "friendship"
+  },
+  {
+    "id": "q83",
+    "text": "真正的朋友，是一辈子的财富。",
+    "category": "friendship"
+  },
+  {
+    "id": "q84",
+    "text": "海内存知己，天涯若比邻。",
+    "category": "friendship"
+  },
+  {
+    "id": "q85",
+    "text": "朋友一生一起走。",
+    "category": "friendship"
+  },
+  {
+    "id": "q86",
+    "text": "高山流水，知音难觅。",
+    "category": "friendship"
+  },
+  {
+    "id": "q87",
+    "text": "友谊地久天长。",
+    "category": "friendship"
+  },
+  {
+    "id": "q88",
+    "text": "同声相应，同气相求。",
+    "category": "friendship"
+  },
+  {
+    "id": "q89",
+    "text": "莫愁前路无知己，天下谁人不识君。",
+    "category": "friendship"
+  },
+  {
+    "id": "q90",
+    "text": "人生贵相知，何必金与钱。",
+    "category": "friendship"
+  },
+  {
+    "id": "q91",
+    "text": "海内存知己。",
+    "category": "friendship"
+  },
+  {
+    "id": "q92",
+    "text": "桃花潭水深千尺，不及汪伦送我情。",
+    "category": "friendship"
+  },
+  {
+    "id": "q93",
+    "text": "知音世所稀。",
+    "category": "friendship"
+  },
+  {
+    "id": "q94",
+    "text": "相知无远近，万里尚为邻。",
+    "category": "friendship"
+  },
+  {
+    "id": "q95",
+    "text": "落地为兄弟，何必骨肉亲。",
+    "category": "friendship"
+  },
+  {
+    "id": "q96",
+    "text": "朋友是另一个自己。",
+    "category": "friendship"
+  },
+  {
+    "id": "q97",
+    "text": "真正的朋友，不言而喻。",
+    "category": "friendship"
+  },
+  {
+    "id": "q98",
+    "text": "愿你友情长存。",
+    "category": "friendship"
+  },
+  {
+    "id": "q99",
+    "text": "有朋友的人生不孤单。",
+    "category": "friendship"
+  },
+  {
+    "id": "q100",
+    "text": "千金易得，知己难求。",
+    "category": "friendship"
+  }
+]

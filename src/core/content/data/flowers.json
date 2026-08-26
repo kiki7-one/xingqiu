@@ -1,0 +1,212 @@
+[
+  {
+    "id": "f1",
+    "name": "玫瑰",
+    "meaning": "爱情、热情",
+    "imageUrl": "",
+    "careTips": "喜阳，需排水良好的土壤，定期修剪"
+  },
+  {
+    "id": "f2",
+    "name": "康乃馨",
+    "meaning": "母爱、温馨",
+    "imageUrl": "",
+    "careTips": "喜光，避免过湿，花期长"
+  },
+  {
+    "id": "f3",
+    "name": "百合",
+    "meaning": "纯洁、高雅",
+    "imageUrl": "",
+    "careTips": "喜半阴，土壤保持湿润"
+  },
+  {
+    "id": "f4",
+    "name": "向日葵",
+    "meaning": "阳光、忠诚",
+    "imageUrl": "",
+    "careTips": "喜强光，耐旱，需支撑"
+  },
+  {
+    "id": "f5",
+    "name": "郁金香",
+    "meaning": "爱的表白",
+    "imageUrl": "",
+    "careTips": "喜凉，秋季种球"
+  },
+  {
+    "id": "f6",
+    "name": "雏菊",
+    "meaning": "天真、纯洁",
+    "imageUrl": "",
+    "careTips": "喜光，耐寒，土壤湿润"
+  },
+  {
+    "id": "f7",
+    "name": "薰衣草",
+    "meaning": "等待爱情",
+    "imageUrl": "",
+    "careTips": "喜光耐旱，需排水良好"
+  },
+  {
+    "id": "f8",
+    "name": "满天星",
+    "meaning": "思念、配角",
+    "imageUrl": "",
+    "careTips": "喜光，土壤排水好"
+  },
+  {
+    "id": "f9",
+    "name": "勿忘我",
+    "meaning": "永恒的爱",
+    "imageUrl": "",
+    "careTips": "喜半阴，保持湿润"
+  },
+  {
+    "id": "f10",
+    "name": "风信子",
+    "meaning": "重生的爱",
+    "imageUrl": "",
+    "careTips": "喜光，冬季种球"
+  },
+  {
+    "id": "f11",
+    "name": "水仙",
+    "meaning": "自爱、尊敬",
+    "imageUrl": "",
+    "careTips": "喜光，水培或土培"
+  },
+  {
+    "id": "f12",
+    "name": "茉莉花",
+    "meaning": "忠贞、尊敬",
+    "imageUrl": "",
+    "careTips": "喜阳，喜温暖湿润"
+  },
+  {
+    "id": "f13",
+    "name": "栀子花",
+    "meaning": "永恒的爱",
+    "imageUrl": "",
+    "careTips": "喜半阴，酸性土壤"
+  },
+  {
+    "id": "f14",
+    "name": "桂花",
+    "meaning": "丰收、吉祥",
+    "imageUrl": "",
+    "careTips": "喜光，喜温暖"
+  },
+  {
+    "id": "f15",
+    "name": "梅花",
+    "meaning": "坚强、高洁",
+    "imageUrl": "",
+    "careTips": "喜阳，耐寒"
+  },
+  {
+    "id": "f16",
+    "name": "桃花",
+    "meaning": "爱情、美好",
+    "imageUrl": "",
+    "careTips": "喜光，春季开花"
+  },
+  {
+    "id": "f17",
+    "name": "樱花",
+    "meaning": "生命、幸福",
+    "imageUrl": "",
+    "careTips": "喜光，喜微酸土壤"
+  },
+  {
+    "id": "f18",
+    "name": "牡丹",
+    "meaning": "富贵、雍容",
+    "imageUrl": "",
+    "careTips": "喜光，喜肥沃土壤"
+  },
+  {
+    "id": "f19",
+    "name": "菊花",
+    "meaning": "高洁、长寿",
+    "imageUrl": "",
+    "careTips": "喜光，耐寒"
+  },
+  {
+    "id": "f20",
+    "name": "兰花",
+    "meaning": "高洁、典雅",
+    "imageUrl": "",
+    "careTips": "喜半阴，喜湿润"
+  },
+  {
+    "id": "f21",
+    "name": "茶花",
+    "meaning": "理想的爱",
+    "imageUrl": "",
+    "careTips": "喜半阴，酸性土壤"
+  },
+  {
+    "id": "f22",
+    "name": "杜鹃",
+    "meaning": "爱的喜悦",
+    "imageUrl": "",
+    "careTips": "喜半阴，酸性土壤"
+  },
+  {
+    "id": "f23",
+    "name": "紫薇",
+    "meaning": "沉迷的爱",
+    "imageUrl": "",
+    "careTips": "喜光，耐旱"
+  },
+  {
+    "id": "f24",
+    "name": "月季",
+    "meaning": "幸福、等待",
+    "imageUrl": "",
+    "careTips": "喜光，需定期修剪"
+  },
+  {
+    "id": "f25",
+    "name": "芍药",
+    "meaning": "情有独钟",
+    "imageUrl": "",
+    "careTips": "喜光，喜肥沃土壤"
+  },
+  {
+    "id": "f26",
+    "name": "海棠",
+    "meaning": "温和、美丽",
+    "imageUrl": "",
+    "careTips": "喜半阴，喜湿润"
+  },
+  {
+    "id": "f27",
+    "name": "丁香",
+    "meaning": "初恋、纯洁",
+    "imageUrl": "",
+    "careTips": "喜光，耐寒"
+  },
+  {
+    "id": "f28",
+    "name": "玉兰",
+    "meaning": "纯洁的爱",
+    "imageUrl": "",
+    "careTips": "喜光，喜肥沃土壤"
+  },
+  {
+    "id": "f29",
+    "name": "紫藤",
+    "meaning": "沉迷的爱",
+    "imageUrl": "",
+    "careTips": "喜光，需支撑"
+  },
+  {
+    "id": "f30",
+    "name": "凌霄",
+    "meaning": "敬仰、声誉",
+    "imageUrl": "",
+    "careTips": "喜光，攀援生长"
+  }
+]
