@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>kiki星球</title>
+  <script>
+    // GitHub Pages SPA 兜底：深链刷新时自动跳回站点首页
+    (function () {
+      var seg = location.pathname.split("/").filter(Boolean);
+      // 项目站点形如 /xingqiu/xxx → 取前两段作为根；用户站/自定义站形如 /xxx → 取第一段
+      var base =
+        seg.length >= 2 ? "/" + seg[0] + "/" + seg[1] + "/" : "/";
+      location.replace(base);
+    })();
+  </script>
+</head>
+<body></body>
+</html>
