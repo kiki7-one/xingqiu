@@ -41,7 +41,7 @@ describe("ItemsPage", () => {
   it("新增物品流程", async () => {
     const user = userEvent.setup();
     renderItemsPage();
-    await user.click(screen.getByText("新增"));
+    await user.click(screen.getByLabelText("新增"));
 
     await user.type(screen.getByLabelText("名称"), "纸巾");
     await user.type(screen.getByLabelText("库存数量"), "10");
@@ -126,5 +126,56 @@ describe("ItemsPage", () => {
     });
     renderItemsPage();
     expect(screen.getByText("⚠️ 需补货")).toBeInTheDocument();
+  });
+
+  it("默认显示全部 tab 并展示服役中与已退役", async () => {
+    const { addItem } = await import("../../core/store/items");
+    await addItem({ name: "服役物品", category: "daily", stock: 5, unit: "个" });
+    await addItem({ name: "退役物品", category: "daily", stock: 1, unit: "个", retired: true });
+    renderItemsPage();
+    // 默认全部，两者都显示
+    expect(screen.getByText("服役物品")).toBeInTheDocument();
+    expect(screen.getByText("退役物品")).toBeInTheDocument();
+    // 已退役物品有标记
+    expect(screen.getAllByText("已退役").length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("服役中 tab 过滤掉已退役物品", async () => {
+    const { addItem } = await import("../../core/store/items");
+    await addItem({ name: "服役物品", category: "daily", stock: 5, unit: "个" });
+    await addItem({ name: "退役物品", category: "daily", stock: 1, unit: "个", retired: true });
+    const user = userEvent.setup();
+    renderItemsPage();
+    await user.click(screen.getByLabelText("筛选服役中"));
+    await waitFor(() => {
+      expect(screen.getByText("服役物品")).toBeInTheDocument();
+      expect(screen.queryByText("退役物品")).not.toBeInTheDocument();
+    });
+  });
+
+  it("已退役 tab 只显示退役物品", async () => {
+    const { addItem } = await import("../../core/store/items");
+    await addItem({ name: "服役物品", category: "daily", stock: 5, unit: "个" });
+    await addItem({ name: "退役物品", category: "daily", stock: 1, unit: "个", retired: true });
+    const user = userEvent.setup();
+    renderItemsPage();
+    await user.click(screen.getByLabelText("筛选已退役"));
+    await waitFor(() => {
+      expect(screen.getByText("退役物品")).toBeInTheDocument();
+      expect(screen.queryByText("服役物品")).not.toBeInTheDocument();
+    });
+  });
+
+  it("编辑物品可设置已退役", async () => {
+    const { addItem } = await import("../../core/store/items");
+    const item = await addItem({ name: "可退役", category: "daily", stock: 5, unit: "个" });
+    const user = userEvent.setup();
+    renderItemsPage();
+    await user.click(screen.getByLabelText("编辑可退役"));
+    await user.click(screen.getByText("已退役（不再使用）"));
+    await user.click(screen.getByText("保存"));
+    await waitFor(() => {
+      expect(useStore.getState().data.items.find((i) => i.id === item.id)?.retired).toBe(true);
+    });
   });
 });

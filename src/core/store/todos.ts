@@ -2,6 +2,14 @@ import { mutateField, withBase, touch } from "./useStore";
 import { useStore } from "./useStore";
 import type { Todo, RepeatRule } from "../types";
 
+/**
+ * ISO 字符串转本地时区 YYYY-MM-DD
+ */
+export function toLocalDateStr(iso: string): string {
+  const d = new Date(iso);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
 export async function addTodo(
   input: Omit<Todo, "id" | "createdAt" | "updatedAt" | "isCompleted">
 ): Promise<Todo> {
@@ -178,4 +186,50 @@ export function getTodayTodos(now: Date = new Date()): Todo[] {
     if (!t.deadline) return false;
     return t.deadline.slice(0, 10) <= todayStr;
   });
+}
+
+/**
+ * 按日期获取待办（YYYY-MM-DD）
+ * - 未完成：截止日期为指定日期 或 已过期但截止日期 <= 指定日期
+ * - 已完成：completedAt 为指定日期
+ */
+export function getTodosByDate(dateStr: string): {
+  pending: Todo[];
+  done: Todo[];
+} {
+  const { data } = useStore.getState();
+  const pending: Todo[] = [];
+  const done: Todo[] = [];
+
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  for (const t of data.todos) {
+    if (t.isCompleted) {
+      // completedAt 为 ISO 字符串，需转本地日期再比对
+      const completedLocal = t.completedAt ? toLocalDateStr(t.completedAt) : "";
+      if (completedLocal === dateStr) done.push(t);
+    } else {
+      // 无截止时间的待办归到"今天"视图展示
+      if (!t.deadline) {
+        if (dateStr === today) pending.push(t);
+        continue;
+      }
+      const deadlineLocal = toLocalDateStr(t.deadline);
+      if (deadlineLocal <= dateStr) pending.push(t);
+    }
+  }
+
+  pending.sort((a, b) => (a.deadline ?? "").localeCompare(b.deadline ?? ""));
+  done.sort((a, b) => (a.completedAt ?? "").localeCompare(b.completedAt ?? ""));
+  return { pending, done };
+}
+
+/**
+ * 获取全部已完成待办
+ */
+export function getAllCompletedTodos(): Todo[] {
+  const { data } = useStore.getState();
+  return data.todos
+    .filter((t) => t.isCompleted)
+    .sort((a, b) => (b.completedAt ?? "").localeCompare(a.completedAt ?? ""));
 }

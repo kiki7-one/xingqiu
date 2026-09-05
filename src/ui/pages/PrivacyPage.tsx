@@ -3,6 +3,7 @@ import { useStore } from "../../core/store/useStore";
 import { enablePrivacyLock, disablePrivacyLock } from "../../core/store/privacy";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
+import { BackButton } from "../components/BackButton";
 
 export function PrivacyPage() {
   const enabled = useStore((s) => s.data.settings.privacy.enabled);
@@ -47,7 +48,10 @@ export function PrivacyPage() {
 
   return (
     <div className="p-6">
-      <h1 className="mb-4 text-2xl font-bold text-cream-900">隐私锁</h1>
+      <div className="mb-4 flex items-center gap-2">
+        <BackButton to="/me" />
+        <h1 className="text-2xl font-bold text-cream-900">隐私锁</h1>
+      </div>
       <div className="space-y-4">
         <div className="rounded-warm bg-white/70 p-4">
           <p className="mb-2 text-sm text-cream-700">

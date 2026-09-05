@@ -5,6 +5,7 @@ import { searchDiaries } from "../../core/store/diaries";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Empty } from "../components/Empty";
+import { BackButton } from "../components/BackButton";
 import { DiaryEditor } from "./DiaryEditor";
 import type { Diary, Mood, Weather } from "../../core/types";
 
@@ -64,54 +65,54 @@ export function DiariesPage() {
   return (
     <div className="p-6">
       <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-cream-900">日记</h1>
-        <Button onClick={handleAdd} size="sm">
-          <Plus size={16} className="mr-1" /> 写日记
+        <div className="flex items-center gap-2">
+          <BackButton to="/record" />
+          <h1 className="text-2xl font-bold text-cream-900">日记</h1>
+        </div>
+        <Button onClick={handleAdd} variant="icon" aria-label="新增">
+          <Plus size={16} />
         </Button>
       </div>
 
-      {/* 搜索区 */}
-      <div className="mb-4 space-y-2 rounded-warm bg-white/60 p-3">
-        <div className="flex gap-2">
-          <Input
-            placeholder="搜索关键词"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            className="flex-1"
-            aria-label="搜索关键词"
-          />
-          <Input
-            placeholder="标签"
-            value={tag}
-            onChange={(e) => setTag(e.target.value)}
-            className="w-28"
-            list="diary-tags"
-            aria-label="按标签筛选"
-          />
-          {allTags.length > 0 && (
-            <datalist id="diary-tags">
-              {allTags.map((t) => (
-                <option key={t} value={t} />
-              ))}
-            </datalist>
-          )}
-        </div>
-        <div className="flex gap-2">
-          <Input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            className="flex-1"
-            aria-label="开始日期"
-          />
-          <Input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            className="flex-1"
-            aria-label="结束日期"
-          />
-        </div>
+      {/* 搜索区：关键词 + 标签 + 时间区间（同一行） */}
+      <div className="mb-4 flex flex-wrap items-center gap-2 rounded-warm bg-white/60 p-3">
+        <Input
+          placeholder="搜索关键词"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          className="w-32"
+          aria-label="搜索关键词"
+        />
+        <Input
+          placeholder="标签"
+          value={tag}
+          onChange={(e) => setTag(e.target.value)}
+          className="w-24"
+          list="diary-tags"
+          aria-label="按标签筛选"
+        />
+        {allTags.length > 0 && (
+          <datalist id="diary-tags">
+            {allTags.map((t) => (
+              <option key={t} value={t} />
+            ))}
+          </datalist>
+        )}
+        <Input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          className="w-36"
+          aria-label="开始日期"
+        />
+        <span className="text-cream-400">~</span>
+        <Input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          className="w-36"
+          aria-label="结束日期"
+        />
       </div>
 
       {filtered.length === 0 ? (

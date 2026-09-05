@@ -4,6 +4,7 @@ import { updateProfile } from "../../core/store/profile";
 import { Button } from "../components/Button";
 import { Input, Textarea } from "../components/Input";
 import { Select } from "../components/Select";
+import { BackButton } from "../components/BackButton";
 
 export function ProfilePage() {
   const profile = useStore((s) => s.data.profile);
@@ -33,7 +34,10 @@ export function ProfilePage() {
 
   return (
     <div className="p-6">
-      <h1 className="mb-4 text-2xl font-bold text-cream-900">个人资料</h1>
+      <div className="mb-4 flex items-center gap-2">
+        <BackButton to="/me" />
+        <h1 className="text-2xl font-bold text-cream-900">个人资料</h1>
+      </div>
       <div className="space-y-3 rounded-warm bg-white/70 p-4">
         <Input label="昵称" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="你的昵称" />
         <Select label="性别" value={gender} onChange={(e) => setGender(e.target.value as any)} options={[

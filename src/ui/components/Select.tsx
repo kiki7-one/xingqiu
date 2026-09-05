@@ -24,16 +24,15 @@ export function Select({
   return (
     <div className="flex flex-col gap-1">
       {label && (
-        <label htmlFor={selectId} className="text-xs text-cream-700">
+        <label htmlFor={selectId} className="text-xs font-medium text-cream-600">
           {label}
         </label>
       )}
       <select
         id={selectId}
         className={clsx(
-          "rounded-warm border border-cream-200 bg-white/80 px-3 py-2 text-sm",
-          "focus:border-cream-400 focus:outline-none focus:ring-1 focus:ring-cream-400",
-          error && "border-red-400",
+          "glass-input rounded-warm px-3 py-2 text-sm text-cream-900 appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%238B7355%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22m3%204.5%203%203%203%20-3%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.6rem_center] bg-no-repeat pr-8",
+          error && "border-error focus:border-error focus:ring-error/20",
           className
         )}
         {...props}
@@ -44,7 +43,7 @@ export function Select({
           </option>
         ))}
       </select>
-      {error && <span className="text-xs text-red-500">{error}</span>}
+      {error && <span className="mt-0.5 text-xs text-error">{error}</span>}
     </div>
   );
 }

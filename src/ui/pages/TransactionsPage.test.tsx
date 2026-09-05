@@ -45,7 +45,7 @@ describe("TransactionsPage", () => {
   it("新增支出流程", async () => {
     const user = userEvent.setup();
     renderPage();
-    await user.click(screen.getByText("新增"));
+    await user.click(screen.getByLabelText("新增"));
 
     await user.type(screen.getByLabelText("金额"), "25.5");
     await user.click(screen.getByText("保存"));
@@ -62,7 +62,7 @@ describe("TransactionsPage", () => {
   it("新增收入流程", async () => {
     const user = userEvent.setup();
     renderPage();
-    await user.click(screen.getByText("新增"));
+    await user.click(screen.getByLabelText("新增"));
 
     await user.selectOptions(screen.getByLabelText("类型"), "income");
     await user.type(screen.getByLabelText("金额"), "5000");
@@ -77,7 +77,7 @@ describe("TransactionsPage", () => {
   it("金额必须大于 0", async () => {
     const user = userEvent.setup();
     renderPage();
-    await user.click(screen.getByText("新增"));
+    await user.click(screen.getByLabelText("新增"));
 
     await user.type(screen.getByLabelText("金额"), "0");
     await user.click(screen.getByText("保存"));
@@ -89,7 +89,7 @@ describe("TransactionsPage", () => {
   it("空金额校验失败", async () => {
     const user = userEvent.setup();
     renderPage();
-    await user.click(screen.getByText("新增"));
+    await user.click(screen.getByLabelText("新增"));
     await user.click(screen.getByText("保存"));
 
     expect(screen.getByText("请输入有效金额")).toBeInTheDocument();

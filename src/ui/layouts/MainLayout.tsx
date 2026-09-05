@@ -1,28 +1,21 @@
 import { NavLink } from "react-router-dom";
-import {
-  Home,
-  Notebook,
-  CalendarCheck,
-  Sparkles,
-  User,
-} from "lucide-react";
 import { clsx } from "clsx";
 
 const tabs = [
-  { to: "/", label: "首页", icon: Home, end: true },
-  { to: "/record", label: "记录", icon: Notebook, end: false },
-  { to: "/plan", label: "计划", icon: CalendarCheck, end: false },
-  { to: "/discover", label: "发现", icon: Sparkles, end: false },
-  { to: "/me", label: "我的", icon: User, end: false },
+  { to: "/", label: "首页", icon: "/ip/dimoo/nav/nav-home.png", end: true },
+  { to: "/plan/todos", label: "计划", icon: "/ip/dimoo/nav/nav-plan.png", end: false },
+  { to: "/record", label: "记录", icon: "/ip/dimoo/nav/nav-record.png", end: false },
+  { to: "/insights", label: "洞察", icon: "/ip/dimoo/nav/nav-insights.png", end: false },
+  { to: "/me", label: "我的", icon: "/ip/dimoo/nav/nav-me.png", end: false },
 ];
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-full flex-col">
       <main className="flex-1 overflow-y-auto">{children}</main>
-      <nav className="flex items-stretch border-t border-cream-200 bg-cream-50/95 backdrop-blur">
+      {/* 底部导航栏 · Dimoo 角色 */}
+      <nav className="glass-tabbar flex items-stretch border-t px-1 pb-[env(safe-area-inset-bottom)]">
         {tabs.map((tab) => {
-          const Icon = tab.icon;
           return (
             <NavLink
               key={tab.to}
@@ -30,20 +23,42 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
               end={tab.end}
               className={({ isActive }) =>
                 clsx(
-                  "flex flex-1 flex-col items-center gap-0.5 py-2 text-xs transition-colors",
-                  isActive
-                    ? "text-cream-900 font-medium"
-                    : "text-cream-700 hover:text-cream-900"
+                  "relative flex flex-1 flex-col items-center gap-0.5 py-1.5 transition-all duration-200",
+                  isActive ? "text-cream-900" : "text-cream-500"
                 )
               }
             >
               {({ isActive }) => (
                 <>
-                  <Icon
-                    size={22}
-                    className={isActive ? "text-cream-600" : "text-cream-400"}
-                  />
-                  <span>{tab.label}</span>
+                  <div
+                    className={clsx(
+                      "relative h-9 w-9 transition-all duration-300",
+                      isActive && "scale-110 -translate-y-1"
+                    )}
+                  >
+                    <img
+                      src={tab.icon}
+                      alt=""
+                      className={clsx(
+                        "h-full w-full object-contain transition-all duration-300",
+                        isActive
+                          ? "opacity-100 drop-shadow-md"
+                          : "opacity-50 grayscale-[0.15]"
+                      )}
+                      draggable={false}
+                    />
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-1/2 h-1 w-4 -translate-x-1/2 rounded-full bg-gradient-to-r from-accent-pink/70 to-accent-lavender/70" />
+                    )}
+                  </div>
+                  <span
+                    className={clsx(
+                      "text-[10px] font-medium leading-none tracking-wide",
+                      isActive ? "text-cream-800" : "text-cream-500"
+                    )}
+                  >
+                    {tab.label}
+                  </span>
                 </>
               )}
             </NavLink>

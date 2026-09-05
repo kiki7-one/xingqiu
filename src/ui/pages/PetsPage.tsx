@@ -19,6 +19,7 @@ import { Input, Textarea } from "../components/Input";
 import { Select } from "../components/Select";
 import { Modal } from "../components/Modal";
 import { Empty } from "../components/Empty";
+import { BackButton } from "../components/BackButton";
 import type {
   Pet,
   PetSpecies,
@@ -74,9 +75,12 @@ export function PetsPage() {
   return (
     <div className="p-6">
       <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-cream-900">宠物</h1>
-        <Button onClick={handleAdd} size="sm">
-          <Plus size={16} className="mr-1" /> 新增
+        <div className="flex items-center gap-2">
+          <BackButton to="/record" />
+          <h1 className="text-2xl font-bold text-cream-900">宠物</h1>
+        </div>
+        <Button onClick={handleAdd} variant="icon" aria-label="新增">
+          <Plus size={16} />
         </Button>
       </div>
 

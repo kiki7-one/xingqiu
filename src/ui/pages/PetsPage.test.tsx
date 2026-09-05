@@ -45,7 +45,7 @@ describe("PetsPage", () => {
   it("新增宠物流程", async () => {
     const user = userEvent.setup();
     renderPage();
-    await user.click(screen.getByText("新增"));
+    await user.click(screen.getByLabelText("新增"));
     await user.type(screen.getByLabelText("名字"), "团子");
     await user.click(screen.getByText("保存"));
     await waitFor(() => {
@@ -57,7 +57,7 @@ describe("PetsPage", () => {
   it("宠物名字校验", async () => {
     const user = userEvent.setup();
     renderPage();
-    await user.click(screen.getByText("新增"));
+    await user.click(screen.getByLabelText("新增"));
     await user.click(screen.getByText("保存"));
     expect(screen.getByText("宠物名字不能为空")).toBeInTheDocument();
   });

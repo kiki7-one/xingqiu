@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kiki星球 · 预览</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif; }
+    .warm { border-radius: 1rem; }
+    .bar { transition: height .4s ease; }
+  </style>
+</head>
+<body class="bg-cream-50 text-cream-900">
+  <div class="mx-auto flex h-screen max-w-md flex-col" style="box-shadow: 0 0 30px rgba(0,0,0,.06);">
+    <main id="content" class="flex-1 overflow-y-auto p-6"></main>
+    <nav class="flex items-stretch border-t border-cream-200 bg-cream-50/95 backdrop-blur">
+      <button data-tab="home" class="tab flex flex-1 flex-col items-center gap-0.5 py-2 text-xs">🏠<span>首页</span></button>
+      <button data-tab="record" class="tab flex flex-1 flex-col items-center gap-0.5 py-2 text-xs">📓<span>记录</span></button>
+      <button data-tab="plan" class="tab flex flex-1 flex-col items-center gap-0.5 py-2 text-xs">📅<span>计划</span></button>
+      <button data-tab="insights" class="tab flex flex-1 flex-col items-center gap-0.5 py-2 text-xs">📊<span>洞察</span></button>
+      <button data-tab="me" class="tab flex flex-1 flex-col items-center gap-0.5 py-2 text-xs">👤<span>我的</span></button>
+    </nav>
+  </div>
+<script>
+const content = document.getElementById("content");
+function greeting(){ const h=new Date().getHours(); if(h>=5&&h<12)return "早上好呀～"; if(h>=12&&h<14)return "中午好呀～"; if(h>=14&&h<18)return "下午好呀～"; return "晚上好呀～"; }
+
+function home(){
+return `<div>
+  <div class="mb-5">
+    <h1 class="text-2xl font-bold text-cream-900">${greeting()}</h1>
+    <p class="mt-3 text-sm leading-relaxed text-cream-600">每一个清晨都是新的开始，愿你今天比昨天更好。</p>
+  </div>
+  <div class="mb-4 warm bg-white/70 p-4">
+    <div class="mb-2 flex items-center justify-between">
+      <h2 class="flex items-center gap-1 text-sm font-medium text-cream-800">✅ 今日待办</h2>
+      <a class="text-xs text-cream-600 underline">全部</a>
+    </div>
+    <ul class="space-y-1">
+      <li class="flex items-center gap-2"><button class="rounded-full border border-cream-400 p-1 text-cream-500">✓</button><span class="text-sm font-medium">买菜</span></li>
+      <li class="flex items-center gap-2"><button class="rounded-full border border-cream-400 p-1 text-cream-500">✓</button><span class="text-sm font-medium">遛狗</span></li>
+      <li class="flex items-center gap-2 opacity-50"><span class="rounded-full border border-cream-200 p-1 text-cream-400">✓</span><span class="text-sm text-cream-400 line-through">交水电费</span></li>
+    </ul>
+  </div>
+  <div class="mb-4 warm bg-gradient-to-br from-sage-50 to-cream-50 p-4">
+    <div class="mb-1 flex items-center gap-1 text-xs text-cream-600">🌼 每日花语</div>
+    <p class="text-sm font-medium text-cream-900">向日葵</p>
+    <p class="mt-0.5 text-xs text-cream-600">阳光、忠诚 —— 愿你像向日葵一样向阳而生</p>
+  </div>
+  <div class="warm bg-white/70 p-4">
+    <p class="mb-3 text-sm text-cream-800">今天心情怎么样呀</p>
+    <div class="flex justify-between">
+      <button class="flex flex-col items-center gap-1 warm px-2 py-1.5 bg-cream-200"><span class="text-2xl">😊</span><span class="text-xs font-medium text-cream-900">开心</span></button>
+      <button class="flex flex-col items-center gap-1 warm px-2 py-1.5 hover:bg-cream-100"><span class="text-2xl">😌</span><span class="text-xs text-cream-500">平静</span></button>
+      <button class="flex flex-col items-center gap-1 warm px-2 py-1.5 hover:bg-cream-100"><span class="text-2xl">😴</span><span class="text-xs text-cream-500">疲惫</span></button>
+      <button class="flex flex-col items-center gap-1 warm px-2 py-1.5 hover:bg-cream-100"><span class="text-2xl">😢</span><span class="text-xs text-cream-500">难过</span></button>
+      <button class="flex flex-col items-center gap-1 warm px-2 py-1.5 hover:bg-cream-100"><span class="text-2xl">😠</span><span class="text-xs text-cream-500">生气</span></button>
+    </div>
+  </div>
+</div>`;
+}
+
+function record(){
+const e=[["📦","物品","管理物品档案与库存"],["🐱","宠物","档案、提醒与粮食"],["💰","记账","收支记录与预算统计"],["📈","统计","月度预算与分类图表"],["📔","日记","记录每日生活"],["🛒","购物清单","补货与手动添加"]];
+return `<div><h1 class="mb-4 text-2xl font-bold">记录</h1><ul class="space-y-2">${e.map(x=>`<li><a class="flex items-center gap-3 warm bg-white/70 p-3 hover:bg-cream-100"><div class="flex h-10 w-10 items-center justify-center warm bg-cream-100 text-cream-600 text-lg">${x[0]}</div><div class="flex-1"><p class="text-sm font-medium">${x[1]}</p><p class="text-xs text-cream-500">${x[2]}</p></div><span class="text-cream-400">›</span></a></li>`).join("")}</ul></div>`;
+}
+
+function plan(){
+const days=["周一","周二","周三","周四","周五","周六","周日"],nums=["24","25","26","27","28","29","30"],today=2;
+return `<div>
+  <div class="mb-4 flex items-center justify-between"><h1 class="text-2xl font-bold">计划</h1><button class="text-sm bg-cream-500 text-white px-3 py-1 warm">+ 新增</button></div>
+  <div class="mb-4 warm bg-white/70 p-3">
+    <div class="mb-2 flex items-center justify-between"><button class="rounded p-1 text-cream-500">‹</button><span class="text-sm font-medium">08-24 ~ 08-30</span><button class="rounded p-1 text-cream-500">›</button></div>
+    <div class="grid grid-cols-7 gap-1">
+      ${days.map((d,i)=>`<button class="flex flex-col items-center gap-0.5 warm py-2 text-xs ${i===today?"bg-cream-500 text-white":i===2?"bg-cream-100 text-cream-800":"text-cream-600 hover:bg-cream-100"}"><span>${d}</span><span class="text-sm font-medium">${nums[i]}</span></button>`).join("")}
+    </div>
+  </div>
+  <ul class="space-y-2">
+    <li class="flex items-center gap-3 warm bg-white/70 p-3"><button class="rounded-full border border-cream-300 p-1 text-cream-400">✓</button><div class="flex-1"><span class="text-sm font-medium">买菜</span><div class="text-xs text-cream-500">优先级: 中 · 截止: 2026-08-26</div></div></li>
+    <li class="flex items-center gap-3 warm bg-white/70 p-3"><button class="rounded-full border border-cream-300 p-1 text-cream-400">✓</button><div class="flex-1"><span class="text-sm font-medium">体检预约</span><div class="text-xs text-cream-500">优先级: 高 · 截止: 2026-08-26</div></div></li>
+    <li class="flex items-center gap-3 warm bg-white/40 p-3 opacity-50"><span class="rounded-full border border-cream-200 p-1 text-cream-400">✓</span><div class="flex-1"><span class="text-sm text-cream-500 line-through">交水电费</span><div class="text-xs text-cream-400">完成于: 2026-08-25</div></div></li>
+  </ul>
+  <div class="mt-6 flex justify-center"><button class="text-sm text-cream-600">🕘 已完成</button></div>
+</div>`;
+}
+
+function insights(){
+const trend=[["一",7],["二",6.5],["三",8],["四",7],["五",8.5],["六",9],["日",8]],max=9;
+const moods=["😌","😊","😊","😌","😊","😊","😌"];
+return `<div>
+  <h1 class="mb-4 text-2xl font-bold">洞察</h1>
+  <div class="mb-4 warm bg-white/70 p-4">
+    <div class="mb-3 flex items-center justify-between"><h2 class="text-sm font-medium">📊 周洞察</h2><span class="text-xs text-cream-500">08-24 ~ 08-30</span></div>
+    <div class="grid grid-cols-3 gap-2">
+      <div class="warm bg-cream-100/50 p-3 text-center"><p class="text-xs text-cream-600">完成任务</p><p class="mt-1 text-lg font-bold">12</p><p class="text-xs text-sage-600">↑ 20%</p></div>
+      <div class="warm bg-cream-100/50 p-3 text-center"><p class="text-xs text-cream-600">睡眠平均</p><p class="mt-1 text-lg font-bold">7.7<span class="text-xs">h</span></p><p class="text-xs text-red-500">↓ 0.3h</p></div>
+      <div class="warm bg-cream-100/50 p-3 text-center"><p class="text-xs text-cream-600">周消费</p><p class="mt-1 text-lg font-bold">¥368</p><p class="text-xs text-red-500">↑ 12%</p></div>
+    </div>
+  </div>
+  <div class="mb-4 warm bg-white/70 p-4">
+    <h2 class="mb-3 text-sm font-medium">😴 睡眠与心情趋势（近7天）</h2>
+    <div class="flex h-32 items-end justify-between gap-1">
+      ${trend.map((t,i)=>`<div class="flex flex-col items-center justify-end flex-1"><div class="mb-1 text-lg">${moods[i]}</div><div class="w-full max-w-[22px] bar bg-cream-400 warm" style="height:${(t[1]/max)*100}%"></div><div class="mt-1 text-[10px] text-cream-500">${t[0]}</div></div>`).join("")}
+    </div>
+    <p class="mt-2 text-center text-xs text-cream-400">柱高=睡眠时长(h)，emoji=当日心情</p>
+  </div>
+  <div class="mb-4 warm bg-white/70 p-4">
+    <h2 class="mb-3 text-sm font-medium">🔍 洞察分析</h2>
+    <div class="mb-3 warm bg-sage-50 p-3"><p class="text-xs text-sage-700">睡眠分析</p><p class="mt-1 text-sm">本周平均 7.7h，接近建议 8h。周末充足、工作日略少，可固定入睡时间 🌙</p></div>
+    <div class="warm bg-cream-100/50 p-3"><p class="text-xs text-cream-600">消费分析</p><p class="mt-1 text-sm">本周支出 ¥368，主要花在「餐饮」¥180（49%）。预算 ¥500，未超支 👍</p>
+      <div class="mt-2 h-2 flex overflow-hidden rounded-full"><div class="h-2 bg-cream-400" style="width:49%"></div><div class="h-2 bg-sage-300" style="width:30%"></div><div class="h-2 bg-cream-200" style="width:21%"></div></div>
+      <p class="mt-1 text-[10px] text-cream-400">餐饮49% · 交通30% · 其他21%</p>
+    </div>
+  </div>
+  <div class="warm bg-gradient-to-br from-sage-100 to-cream-100 p-4">
+    <h2 class="mb-2 text-sm font-medium text-sage-800">💡 本周建议</h2>
+    <ul class="space-y-2 text-sm text-cream-800">
+      <li>🌳 周末去公园走走、吸吸氧，给身心充充电～</li>
+      <li>🏃 连续 3 天睡眠不足，试试傍晚轻快散步或拉伸 20 分钟</li>
+      <li>💪 本周已顺利完成 12 个任务，超棒，继续保持！</li>
+      <li>🎁 消费控制得不错，记得偶尔也犒劳一下自己</li>
+    </ul>
+  </div>
+</div>`;
+}
+
+function me(){
+return `<div>
+  <div class="mb-5 flex items-center gap-4 warm bg-white/70 p-4">
+    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-cream-100 text-cream-600 text-2xl">👤</div>
+    <div class="flex-1"><p class="text-base font-semibold">未设置昵称</p><p class="text-xs text-cream-500">欢迎使用 kiki 星球</p></div>
+    <button class="rounded-full p-2 text-cream-500">⚙️</button>
+  </div>
+  <h2 class="mb-2 text-sm font-medium text-cream-800">更多功能</h2>
+  <ul class="space-y-2">
+    <li><a class="flex items-center gap-3 warm bg-white/70 p-3 hover:bg-cream-100"><div class="flex h-10 w-10 items-center justify-center warm bg-cream-100">🔒</div><div class="flex-1"><p class="text-sm font-medium">隐私锁</p><p class="text-xs text-cream-500">密码保护隐私板块</p></div><span class="text-cream-400">›</span></a></li>
+    <li><a class="flex items-center gap-3 warm bg-white/70 p-3 hover:bg-cream-100"><div class="flex h-10 w-10 items-center justify-center warm bg-cream-100">🔔</div><div class="flex-1"><p class="text-sm font-medium">提醒设置</p><p class="text-xs text-cream-500">全局开关、免打扰时段</p></div><span class="text-cream-400">›</span></a></li>
+    <li><a class="flex items-center gap-3 warm bg-white/70 p-3 hover:bg-cream-100"><div class="flex h-10 w-10 items-center justify-center warm bg-cream-100">💾</div><div class="flex-1"><p class="text-sm font-medium">备份与恢复</p><p class="text-xs text-cream-500">导出/导入数据</p></div><span class="text-cream-400">›</span></a></li>
+  </ul>
+</div>`;
+}
+
+const pages={home,record,plan,insights,me};
+function render(tab){
+  content.innerHTML=pages[tab]();
+  document.querySelectorAll(".tab").forEach(b=>{
+    const on=b.dataset.tab===tab;
+    b.style.color=on?"#603e29":"#784b31";
+    b.style.fontWeight=on?"600":"400";
+    b.style.opacity=on?"1":"0.7";
+  });
+}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>render(b.dataset.tab)));
+render("home");
+</script>
+</body>
+</html>

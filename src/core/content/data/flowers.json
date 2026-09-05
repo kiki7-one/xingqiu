@@ -208,5 +208,61 @@
     "meaning": "敬仰、声誉",
     "imageUrl": "",
     "careTips": "喜光，攀援生长"
+  },
+  {
+    "id": "f31",
+    "name": "百日菊",
+    "meaning": "友谊、思念、长久",
+    "imageUrl": "/flowers/zinnia.png",
+    "careTips": "喜阳、耐旱，花期长"
+  },
+  {
+    "id": "f32",
+    "name": "松果菊",
+    "meaning": "健康、坚韧、活力",
+    "imageUrl": "/flowers/coneflower.png",
+    "careTips": "喜光、耐寒，少浇水"
+  },
+  {
+    "id": "f33",
+    "name": "飞燕草",
+    "meaning": "积极、浪漫、快乐",
+    "imageUrl": "/flowers/delphinium.png",
+    "careTips": "喜光、喜凉爽通风"
+  },
+  {
+    "id": "f34",
+    "name": "波斯菊",
+    "meaning": "和谐、快乐、纯真",
+    "imageUrl": "/flowers/cosmos.png",
+    "careTips": "喜光、耐贫瘠"
+  },
+  {
+    "id": "f35",
+    "name": "大丽花",
+    "meaning": "优雅、坚强、勇气",
+    "imageUrl": "/flowers/dahlia.png",
+    "careTips": "喜光、喜肥沃土壤"
+  },
+  {
+    "id": "f36",
+    "name": "睡莲",
+    "meaning": "纯洁、宁静、智慧",
+    "imageUrl": "/flowers/water-lily.png",
+    "careTips": "水生，喜静水面"
+  },
+  {
+    "id": "f37",
+    "name": "向日葵",
+    "meaning": "阳光、希望、忠诚",
+    "imageUrl": "/flowers/sunflower.png",
+    "careTips": "喜强光、耐旱"
+  },
+  {
+    "id": "f38",
+    "name": "绣球花",
+    "meaning": "感恩、圆满、团圆",
+    "imageUrl": "/flowers/hydrangea.png",
+    "careTips": "喜半阴、喜湿润"
   }
 ]

@@ -24,29 +24,29 @@ export function Modal({ open, onClose, title, children, footer }: ModalProps) {
 
   return (
     <div
-      className={clsx(
-        "fixed inset-0 z-50 flex items-end justify-center bg-black/30 sm:items-center"
-      )}
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/25 backdrop-blur-sm animate-fade-in-up sm:items-center"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-lg rounded-t-warm bg-cream-50 p-5 shadow-xl sm:rounded-warm"
+        className="glass-modal w-full max-w-lg p-5 animate-fade-in-up"
         onClick={(e) => e.stopPropagation()}
       >
         {title && (
-          <div className="mb-3 flex items-center justify-between">
+          <div className="mb-4 flex items-center justify-between">
             <h2 className="text-base font-semibold text-cream-900">{title}</h2>
             <button
               onClick={onClose}
-              className="text-cream-500 hover:text-cream-800"
+              className="flex h-7 w-7 items-center justify-center rounded-full text-cream-400 transition-colors hover:bg-cream-100 hover:text-cream-700"
             >
-              <X size={20} />
+              <X size={16} />
             </button>
           </div>
         )}
         <div className="max-h-[70vh] overflow-y-auto">{children}</div>
         {footer && (
-          <div className="mt-4 flex justify-end gap-2">{footer}</div>
+          <div className="mt-4 flex justify-end gap-2 border-t border-cream-200/40 pt-4">
+            {footer}
+          </div>
         )}
       </div>
     </div>

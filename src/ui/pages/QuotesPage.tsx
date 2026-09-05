@@ -11,6 +11,7 @@ import { getAllQuotes } from "../../core/content/library";
 import { getQuoteOfDay, getRandomQuote } from "../../core/content/rotation";
 import { Button } from "../components/Button";
 import { Empty } from "../components/Empty";
+import { BackButton } from "../components/BackButton";
 import type { Quote } from "../../core/types";
 
 const CATEGORY_LABEL: Record<string, string> = {
@@ -57,7 +58,10 @@ export function QuotesPage() {
   return (
     <div className="p-6">
       <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-cream-900">每日语录</h1>
+        <div className="flex items-center gap-2">
+          <BackButton to="/insights" />
+          <h1 className="text-2xl font-bold text-cream-900">每日语录</h1>
+        </div>
         <Button variant="ghost" size="sm" onClick={() => setShowFavorites(true)}>
           <Bookmark size={16} className="mr-1" /> 收藏
         </Button>

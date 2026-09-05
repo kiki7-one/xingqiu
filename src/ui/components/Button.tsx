@@ -1,14 +1,19 @@
 import { clsx } from "clsx";
-import { clsx as _ } from "clsx";
 import type { ButtonHTMLAttributes } from "react";
 
-type Variant = "primary" | "secondary" | "ghost" | "danger";
+type Variant = "primary" | "secondary" | "ghost" | "danger" | "icon";
 
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-cream-500 text-white hover:bg-cream-600",
-  secondary: "bg-cream-100 text-cream-800 hover:bg-cream-200",
-  ghost: "text-cream-700 hover:bg-cream-100",
-  danger: "bg-red-500 text-white hover:bg-red-600",
+  primary:
+    "bg-gradient-to-br from-cream-500 to-cream-600 text-white shadow-soft hover:shadow-glass hover:-translate-y-px active:translate-y-0",
+  secondary:
+    "bg-cream-100/80 text-cream-800 border border-cream-200/60 hover:bg-cream-200/70",
+  ghost: "text-cream-700 hover:bg-cream-100/60",
+  danger:
+    "bg-gradient-to-br from-error to-[#C07080] text-white shadow-soft hover:opacity-90",
+  // 圆形描边按钮：无深色填充，仅边框 + 加号图标
+  icon:
+    "flex items-center justify-center rounded-full border-[1.5px] border-cream-300 bg-white text-cream-600 hover:border-cream-400 hover:text-cream-700 hover:bg-cream-50 active:scale-95",
 };
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -28,11 +33,14 @@ export function Button({
   return (
     <button
       className={clsx(
-        "rounded-warm transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
+        "transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:active:scale-100",
+        variant === "icon"
+          ? "h-9 w-9 rounded-full"
+          : "rounded-warm",
         variantClasses[variant],
-        size === "sm" && "px-3 py-1 text-sm",
-        size === "md" && "px-4 py-2 text-sm",
-        size === "lg" && "px-5 py-2.5 text-base",
+        variant !== "icon" && size === "sm" && "px-3 py-1.5 text-xs",
+        variant !== "icon" && size === "md" && "px-4 py-2 text-sm",
+        variant !== "icon" && size === "lg" && "px-6 py-2.5 text-base",
         full && "w-full",
         className
       )}

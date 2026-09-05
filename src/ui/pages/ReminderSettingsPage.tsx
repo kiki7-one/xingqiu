@@ -3,6 +3,7 @@ import { useStore } from "../../core/store/useStore";
 import { mutateField } from "../../core/store/useStore";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
+import { BackButton } from "../components/BackButton";
 
 export function ReminderSettingsPage() {
   const settings = useStore((s) => s.data.settings.reminders);
@@ -53,7 +54,10 @@ export function ReminderSettingsPage() {
 
   return (
     <div className="p-6">
-      <h1 className="mb-4 text-2xl font-bold text-cream-900">提醒设置</h1>
+      <div className="mb-4 flex items-center gap-2">
+        <BackButton to="/me" />
+        <h1 className="text-2xl font-bold text-cream-900">提醒设置</h1>
+      </div>
       <div className="space-y-4">
         <div className="rounded-warm bg-white/70 p-4">
           <label className="flex items-center justify-between">

@@ -13,7 +13,8 @@ describe("MainLayout", () => {
             <Route path="/" element={<div>Home Content</div>} />
             <Route path="/record" element={<div>Record Content</div>} />
             <Route path="/plan" element={<div>Plan Content</div>} />
-            <Route path="/discover" element={<div>Discover Content</div>} />
+            <Route path="/plan/todos" element={<div>Todos Content</div>} />
+            <Route path="/insights" element={<div>Insights Content</div>} />
             <Route path="/me" element={<div>Me Content</div>} />
           </Routes>
         </MainLayout>
@@ -24,10 +25,16 @@ describe("MainLayout", () => {
   it("渲染 5 个底部 Tab", () => {
     renderWithRouter();
     expect(screen.getByText("首页")).toBeInTheDocument();
-    expect(screen.getByText("记录")).toBeInTheDocument();
     expect(screen.getByText("计划")).toBeInTheDocument();
-    expect(screen.getByText("发现")).toBeInTheDocument();
+    expect(screen.getByText("记录")).toBeInTheDocument();
+    expect(screen.getByText("洞察")).toBeInTheDocument();
     expect(screen.getByText("我的")).toBeInTheDocument();
+  });
+
+  it("记录 tab 直接展示文案", () => {
+    renderWithRouter();
+    const recordTab = screen.getByText("记录");
+    expect(recordTab).toBeInTheDocument();
   });
 
   it("首页路由渲染首页内容", () => {
@@ -45,9 +52,14 @@ describe("MainLayout", () => {
     expect(screen.getByText("Plan Content")).toBeInTheDocument();
   });
 
-  it("发现路由渲染发现内容", () => {
-    renderWithRouter("/discover");
-    expect(screen.getByText("Discover Content")).toBeInTheDocument();
+  it("计划 tab 直达待办页", () => {
+    renderWithRouter("/plan/todos");
+    expect(screen.getByText("Todos Content")).toBeInTheDocument();
+  });
+
+  it("洞察路由渲染洞察内容", () => {
+    renderWithRouter("/insights");
+    expect(screen.getByText("Insights Content")).toBeInTheDocument();
   });
 
   it("我的路由渲染我的内容", () => {

@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Heart, ChevronLeft, ChevronRight } from "lucide-react";
+import { Heart, ChevronLeft, ChevronRight, Flower2 } from "lucide-react";
 import { useStore } from "../../core/store/useStore";
 import {
   favoriteFlower,
@@ -9,6 +9,7 @@ import {
 import { getAllFlowers } from "../../core/content/library";
 import { getFlowerOfDay } from "../../core/content/rotation";
 import { Empty } from "../components/Empty";
+import { BackButton } from "../components/BackButton";
 import type { Flower } from "../../core/types";
 
 export function FlowersPage() {
@@ -44,7 +45,10 @@ export function FlowersPage() {
   if (!current) {
     return (
       <div className="p-6">
-        <h1 className="mb-4 text-2xl font-bold text-cream-900">每日花语</h1>
+        <div className="mb-4 flex items-center gap-2">
+        <BackButton to="/insights" />
+        <h1 className="text-2xl font-bold text-cream-900">每日花语</h1>
+      </div>
         <Empty message="暂无花语" />
       </div>
     );
@@ -52,8 +56,38 @@ export function FlowersPage() {
 
   return (
     <div className="p-6">
-      <h1 className="mb-4 text-2xl font-bold text-cream-900">每日花语</h1>
-      <div className="rounded-warm bg-gradient-to-br from-sage-50 to-cream-50 p-6">
+      <div className="mb-4 flex items-center gap-2">
+        <BackButton to="/insights" />
+        <h1 className="text-2xl font-bold text-cream-900">每日花语</h1>
+      </div>
+      <div className="overflow-hidden rounded-warm bg-gradient-to-br from-sage-100/80 to-cream-100">
+        <div className="relative flex min-h-[150px] items-center p-6">
+          {/* 左侧：花名 + 简短花语（浅色） */}
+          <div className="z-10 flex-1 pr-4">
+            <h2 className="mt-1.5 text-2xl font-semibold text-sage-300">
+              {current.name}
+            </h2>
+            <p className="mt-1.5 text-base leading-relaxed text-cream-300">
+              {current.meaning}
+            </p>
+          </div>
+          {/* 右侧背景图 */}
+          <div className="flex items-center justify-end opacity-70">
+            {current.imageUrl ? (
+              <img
+                src={current.imageUrl}
+                alt={current.name}
+                className="h-28 w-28 rounded-full object-cover"
+              />
+            ) : (
+              <Flower2 size={100} className="text-sage-200/70" />
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* 切换 + 详情 */}
+      <div className="mt-4 rounded-warm bg-white/70 p-4">
         <div className="flex items-center justify-between">
           <button
             onClick={handlePrev}
@@ -63,7 +97,7 @@ export function FlowersPage() {
           >
             <ChevronLeft size={20} />
           </button>
-          <h2 className="text-xl font-semibold text-cream-900">{current.name}</h2>
+          <span className="text-sm text-cream-700">{current.name}</span>
           <button
             onClick={handleNext}
             disabled={historyIndex >= allFlowers.length - 1}
@@ -73,11 +107,6 @@ export function FlowersPage() {
             <ChevronRight size={20} />
           </button>
         </div>
-        {current.imageUrl && (
-          <div className="mt-4 flex justify-center">
-            <img src={current.imageUrl} alt={current.name} className="max-h-48 rounded-warm object-cover" />
-          </div>
-        )}
         <div className="mt-4">
           <p className="text-sm text-cream-600">花语</p>
           <p className="mt-1 text-base text-cream-900">{current.meaning}</p>

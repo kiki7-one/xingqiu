@@ -44,6 +44,7 @@ export interface Item extends BaseEntity {
   threshold?: number; // 预警阈值
   images?: string[];
   remark?: string;
+  retired?: boolean; // 是否已退役
 }
 
 export interface ConsumptionRecord extends BaseEntity {
@@ -136,6 +137,47 @@ export interface Todo extends BaseEntity {
 
 export type Mood = "happy" | "calm" | "sad" | "angry" | "tired";
 export type Weather = "sunny" | "cloudy" | "rainy" | "snowy" | "overcast";
+
+// ============ 今日心情 ============
+
+export interface MoodRecord extends BaseEntity {
+  date: string; // YYYY-MM-DD
+  mood: Mood;
+}
+
+// ============ 睡眠 ============
+
+export interface SleepRecord extends BaseEntity {
+  date: string; // YYYY-MM-DD
+  /** 睡眠时长（小时） */
+  hours: number;
+  /** 入睡时间 HH:mm */
+  sleepTime?: string;
+  /** 起床时间 HH:mm */
+  wakeTime?: string;
+}
+
+// ============ 运动 ============
+
+export type ExerciseType =
+  | "walk" // 散步
+  | "run" // 跑步
+  | "bike" // 骑行
+  | "swim" // 游泳
+  | "yoga" // 瑜伽
+  | "fitness" // 健身
+  | "badminton" // 羽毛球
+  | "basketball" // 篮球
+  | "hike" // 爬山
+  | "other"; // 其他
+
+export interface ExerciseRecord extends BaseEntity {
+  date: string; // YYYY-MM-DD
+  type: ExerciseType;
+  /** 时长（分钟） */
+  duration: number;
+  remark?: string;
+}
 
 export interface Diary extends BaseEntity {
   date: ISODateString; // YYYY-MM-DD
@@ -247,6 +289,9 @@ export interface KikiData {
   petFoods: PetFood[];
   todos: Todo[];
   diaries: Diary[];
+  moodRecords: MoodRecord[];
+  sleepRecords: SleepRecord[];
+  exerciseRecords: ExerciseRecord[];
   transactions: Transaction[];
   budgets: Budget[];
   quoteFavorites: QuoteFavorite[];

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useStore } from "../../core/store/useStore";
 import { getDB } from "../../core/db";
+import { createInitialData } from "../../core/db/initialData";
 import { Button } from "../components/Button";
+import { BackButton } from "../components/BackButton";
 
 export function BackupPage() {
   const [msg, setMsg] = useState("");
@@ -44,9 +46,24 @@ export function BackupPage() {
     e.target.value = "";
   };
 
+  const handleClear = async () => {
+    setError("");
+    if (!window.confirm("确定清空全部数据吗？此操作不可恢复。")) return;
+    try {
+      await useStore.getState().replace(createInitialData());
+      setMsg("数据已清空");
+      setTimeout(() => window.location.reload(), 800);
+    } catch (err) {
+      setError("清空失败");
+    }
+  };
+
   return (
     <div className="p-6">
-      <h1 className="mb-4 text-2xl font-bold text-cream-900">备份与恢复</h1>
+      <div className="mb-4 flex items-center gap-2">
+        <BackButton to="/me" />
+        <h1 className="text-2xl font-bold text-cream-900">备份与恢复</h1>
+      </div>
       <div className="space-y-4">
         <div className="rounded-warm bg-white/70 p-4">
           <h2 className="mb-2 text-sm font-medium text-cream-800">立即备份</h2>
@@ -64,6 +81,14 @@ export function BackupPage() {
             className="text-sm text-cream-700"
             aria-label="选择备份文件"
           />
+        </div>
+
+        <div className="rounded-warm bg-white/70 p-4">
+          <h2 className="mb-2 text-sm font-medium text-cream-800">清空数据</h2>
+          <p className="mb-3 text-xs text-cream-500">清空全部记录（待办、记账、日记等），恢复为初始空白状态</p>
+          <Button variant="secondary" onClick={handleClear}>
+            清空数据
+          </Button>
         </div>
 
         <div className="rounded-warm bg-white/70 p-4">

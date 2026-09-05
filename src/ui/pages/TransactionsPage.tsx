@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Wallet } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Plus, Trash2, Wallet, FileText, BarChart3, Target, Settings } from "lucide-react";
 import { useStore } from "../../core/store/useStore";
 import {
   addTransaction,
   updateTransaction,
   deleteTransaction,
+  getRemainingBudget,
+  setBudget,
+  getBudget,
 } from "../../core/store/transactions";
 import { Button } from "../components/Button";
 import { Input, Textarea } from "../components/Input";
 import { Select } from "../components/Select";
 import { Modal } from "../components/Modal";
 import { Empty } from "../components/Empty";
+import { BackButton } from "../components/BackButton";
+import { SearchInput } from "../components/SearchInput";
 import { todayDate } from "../../core/utils/id";
 import type {
   Transaction,
@@ -48,6 +54,7 @@ export function TransactionsPage() {
   const transactions = useStore((s) =>
     [...s.data.transactions].sort((a, b) => b.date.localeCompare(a.date))
   );
+  const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState<"" | TransactionType>("");
   const [filterCategory, setFilterCategory] = useState<
     "" | TransactionCategory
@@ -57,6 +64,7 @@ export function TransactionsPage() {
   const [editing, setEditing] = useState<Transaction | null>(null);
 
   const filtered = transactions.filter((t) => {
+    if (search && !(t.remark ?? "").includes(search)) return false;
     if (filterType && t.type !== filterType) return false;
     if (filterCategory && t.category !== filterCategory) return false;
     if (filterMonth && !t.date.startsWith(filterMonth)) return false;
@@ -79,6 +87,10 @@ export function TransactionsPage() {
     setModalOpen(true);
   };
 
+  // 当前月剩余预算
+  const currentMonth = todayDate().slice(0, 7);
+  const remaining = getRemainingBudget(currentMonth);
+
   const handleEdit = (tx: Transaction) => {
     setEditing(tx);
     setModalOpen(true);
@@ -93,10 +105,40 @@ export function TransactionsPage() {
   return (
     <div className="p-6">
       <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-cream-900">记账</h1>
-        <Button onClick={handleAdd} size="sm">
-          <Plus size={16} className="mr-1" /> 新增
+        <div className="flex items-center gap-2">
+          <BackButton to="/record" />
+          <h1 className="text-2xl font-bold text-cream-900">记账</h1>
+        </div>
+        <Button onClick={handleAdd} variant="icon" aria-label="新增">
+          <Plus size={16} />
         </Button>
+      </div>
+
+      {/* 账单 / 支出 / 本月预算（同一行） */}
+      <div className="mb-4 grid grid-cols-3 gap-2">
+        <Link
+          to="/record/transactions/bill"
+          className="glass-card group flex flex-col items-center justify-center gap-1 p-3 transition-all hover:shadow-soft hover:-translate-y-px"
+        >
+          <div className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-rose-50">
+            <FileText size={17} className="text-[#C47A6A]" />
+          </div>
+          <p className="text-xs font-semibold text-[#4A3B2A]">账单</p>
+        </Link>
+        <Link
+          to="/record/transactions/expense"
+          className="glass-card group flex flex-col items-center justify-center gap-1 p-3 transition-all hover:shadow-soft hover:-translate-y-px"
+        >
+          <div className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-blue-50">
+            <BarChart3 size={17} className="text-[#5A7890]" />
+          </div>
+          <p className="text-xs font-semibold text-[#4A3B2A]">支出</p>
+        </Link>
+        <BudgetCard
+          budget={remaining.budget}
+          spent={remaining.spent}
+          remaining={remaining.remaining}
+        />
       </div>
 
       {/* 收支合计 */}
@@ -126,7 +168,14 @@ export function TransactionsPage() {
       </div>
 
       {/* 筛选 */}
-      <div className="mb-4 flex flex-wrap gap-2">
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        <SearchInput
+          placeholder="搜索备注"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-36"
+          aria-label="搜索备注"
+        />
         <Select
           aria-label="按类型筛选"
           value={filterType}
@@ -223,6 +272,94 @@ export function TransactionsPage() {
         onClose={() => setModalOpen(false)}
         editing={editing}
       />
+    </div>
+  );
+}
+
+function BudgetCard({
+  budget,
+  spent,
+  remaining,
+}: {
+  budget?: number;
+  spent: number;
+  remaining: number;
+}) {
+  const [open, setOpen] = useState(false);
+  const [total, setTotal] = useState("");
+  const [saved, setSaved] = useState(false);
+  const month = todayDate().slice(0, 7);
+  const existing = getBudget(month);
+
+  const handleSave = async () => {
+    const num = Number(total);
+    if (!total || isNaN(num) || num < 0) return;
+    await setBudget({
+      month,
+      total: Math.round(num * 100) / 100,
+      byCategory: existing?.byCategory,
+    });
+    setTotal("");
+    setSaved(true);
+    setTimeout(() => setSaved(false), 1500);
+    setOpen(false);
+  };
+
+  return (
+    <div className="glass-card relative flex flex-col items-center justify-center gap-1 p-3">
+      <div className="flex items-center gap-1">
+        <Target size={14} className="text-[#5A7890]" />
+        <p className="text-xs font-semibold text-[#4A3B2A]">本月预算</p>
+        {/* 设置预算按钮 */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="flex h-5 w-5 items-center justify-center rounded-full text-[#9B8B7B] transition-colors hover:bg-cream-100 hover:text-[#5A7890]"
+          aria-label="设置月预算"
+        >
+          <Settings size={12} />
+        </button>
+      </div>
+      {/* 剩余金额：已设置显示具体金额，未设置显示短横杠 */}
+      <p
+        className={`text-sm font-bold ${
+          budget
+            ? remaining >= 0
+              ? "text-sage-600"
+              : "text-[#E07A6A]"
+            : "text-[#C4B5A5]"
+        }`}
+      >
+        {budget ? `¥${Math.abs(remaining).toFixed(2)}` : "—"}
+      </p>
+      <p className="text-[10px] text-[#9B8B7B]">
+        {budget ? (remaining >= 0 ? "剩余" : "超支") : "未设置"}
+      </p>
+
+      {/* 编辑预算输入（弹层） */}
+      {open && (
+        <div className="absolute left-1/2 top-full z-20 mt-2 w-56 -translate-x-1/2 glass-modal !rounded-[14px] p-3">
+          <p className="mb-2 text-xs font-medium text-[#4A3B2A]">
+            设置本月预算
+          </p>
+          <div className="flex items-end gap-2">
+            <Input
+              label="总预算"
+              type="number"
+              step="0.01"
+              min="0"
+              value={total}
+              onChange={(e) => setTotal(e.target.value)}
+              placeholder={existing?.total ? String(existing.total) : "0.00"}
+              className="w-28"
+            />
+            <Button size="sm" onClick={handleSave}>
+              保存
+            </Button>
+          </div>
+          {saved && <p className="mt-1 text-xs text-sage-600">✓ 已保存</p>}
+        </div>
+      )}
     </div>
   );
 }

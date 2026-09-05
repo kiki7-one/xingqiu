@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Search, Package } from "lucide-react";
+import { Plus, Package } from "lucide-react";
 import { useStore } from "../../core/store/useStore";
 import {
   addItem,
@@ -12,6 +12,8 @@ import { Input, Textarea } from "../components/Input";
 import { Select } from "../components/Select";
 import { Modal } from "../components/Modal";
 import { Empty } from "../components/Empty";
+import { BackButton } from "../components/BackButton";
+import { SearchInput } from "../components/SearchInput";
 import type { Item, ItemCategory } from "../../core/types";
 
 const CATEGORIES: { value: ItemCategory; label: string }[] = [
@@ -32,9 +34,12 @@ const CATEGORY_LABEL: Record<ItemCategory, string> = {
   other: "其他",
 };
 
+type StatusTab = "all" | "active" | "retired";
+
 export function ItemsPage() {
   const items = useStore((s) => s.data.items.filter((i) => !i.isDeleted));
   const [search, setSearch] = useState("");
+  const [statusTab, setStatusTab] = useState<StatusTab>("all");
   const [filterCategory, setFilterCategory] = useState<"" | ItemCategory>("");
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<Item | null>(null);
@@ -42,6 +47,8 @@ export function ItemsPage() {
   const filtered = items.filter((it) => {
     if (search && !it.name.includes(search)) return false;
     if (filterCategory && it.category !== filterCategory) return false;
+    if (statusTab === "active" && it.retired) return false;
+    if (statusTab === "retired" && !it.retired) return false;
     return true;
   });
 
@@ -72,14 +79,19 @@ export function ItemsPage() {
   return (
     <div className="p-6">
       <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-cream-900">物品</h1>
-        <Button onClick={handleAdd} size="sm">
-          <Plus size={16} className="mr-1" /> 新增
+        <div className="flex items-center gap-2">
+          <BackButton to="/record" />
+          <h1 className="text-2xl font-bold text-cream-900">物品</h1>
+        </div>
+        {/* 新增按钮固定右上角 */}
+        <Button onClick={handleAdd} variant="icon" aria-label="新增">
+          <Plus size={18} />
         </Button>
       </div>
 
+      {/* 搜索 + 分类筛选（单独一行） */}
       <div className="mb-4 flex gap-2">
-        <Input
+        <SearchInput
           placeholder="搜索物品名称"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -91,8 +103,31 @@ export function ItemsPage() {
             setFilterCategory(e.target.value as "" | ItemCategory)
           }
           options={[{ value: "", label: "全部分类" }, ...CATEGORIES]}
-          className="w-32"
+          className="w-28"
         />
+      </div>
+
+      {/* 状态分类 tab */}
+      <div className="mb-3 flex gap-1 rounded-warm bg-white/60 p-1">
+        {[
+          { value: "all", label: "全部" },
+          { value: "active", label: "服役中" },
+          { value: "retired", label: "已退役" },
+        ].map((t) => (
+          <button
+            key={t.value}
+            onClick={() => setStatusTab(t.value as StatusTab)}
+            className={`flex-1 rounded-warm py-1.5 text-sm transition-colors ${
+              statusTab === t.value
+                ? "bg-cream-500 text-white"
+                : "text-cream-600 hover:bg-cream-100"
+            }`}
+            aria-label={`筛选${t.label}`}
+            aria-pressed={statusTab === t.value}
+          >
+            {t.label}
+          </button>
+        ))}
       </div>
 
       {filtered.length === 0 ? (
@@ -109,15 +144,26 @@ export function ItemsPage() {
             return (
               <li
                 key={item.id}
-                className="rounded-warm bg-white/70 p-3 shadow-sm"
+                className={`rounded-warm p-3 shadow-sm ${
+                  item.retired ? "bg-white/40 opacity-60" : "bg-white/70"
+                }`}
               >
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-medium text-cream-900">
+                      <span
+                        className={`font-medium ${
+                          item.retired ? "text-cream-500" : "text-cream-900"
+                        }`}
+                      >
                         {item.name}
                       </span>
-                      {lowStock && (
+                      {item.retired && (
+                        <span className="rounded bg-cream-200 px-1.5 py-0.5 text-xs text-cream-600">
+                          已退役
+                        </span>
+                      )}
+                      {!item.retired && lowStock && (
                         <span className="rounded bg-orange-100 px-1.5 py-0.5 text-xs text-orange-600">
                           ⚠️ 需补货
                         </span>
@@ -191,6 +237,7 @@ function ItemFormModal({
   const [location, setLocation] = useState("");
   const [threshold, setThreshold] = useState<number | "">("");
   const [remark, setRemark] = useState("");
+  const [retired, setRetired] = useState(false);
   const [error, setError] = useState("");
 
   // 当 modal 打开或 editing 改变时同步表单
@@ -204,6 +251,7 @@ function ItemFormModal({
       setLocation(editing.location ?? "");
       setThreshold(editing.threshold ?? "");
       setRemark(editing.remark ?? "");
+      setRetired(editing.retired ?? false);
     } else {
       setName("");
       setCategory("daily");
@@ -212,6 +260,7 @@ function ItemFormModal({
       setLocation("");
       setThreshold("");
       setRemark("");
+      setRetired(false);
     }
     setError("");
   }, [open, editing]);
@@ -233,6 +282,7 @@ function ItemFormModal({
       location: location || undefined,
       threshold: threshold === "" ? undefined : Number(threshold),
       remark: remark || undefined,
+      retired,
     };
     if (editing) {
       await updateItem(editing.id, payload);
@@ -302,6 +352,14 @@ function ItemFormModal({
           }
           placeholder="低于此值提醒补货"
         />
+        <label className="flex items-center gap-2 text-sm text-cream-800">
+          <input
+            type="checkbox"
+            checked={retired}
+            onChange={(e) => setRetired(e.target.checked)}
+          />
+          已退役（不再使用）
+        </label>
         <Textarea
           label="备注"
           value={remark}

@@ -45,7 +45,7 @@ describe("DiariesPage", () => {
   it("新增日记流程", async () => {
     const user = userEvent.setup();
     renderPage();
-    await user.click(screen.getByText("写日记"));
+    await user.click(screen.getByLabelText("新增"));
 
     await user.type(screen.getByLabelText("内容"), "今天很开心");
     await user.click(screen.getByText("保存"));
@@ -59,7 +59,7 @@ describe("DiariesPage", () => {
   it("空内容校验失败", async () => {
     const user = userEvent.setup();
     renderPage();
-    await user.click(screen.getByText("写日记"));
+    await user.click(screen.getByLabelText("新增"));
     await user.click(screen.getByText("保存"));
 
     expect(screen.getByText("日记内容不能为空")).toBeInTheDocument();
